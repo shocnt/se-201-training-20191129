@@ -1,21 +1,21 @@
 # SE Team training Calm 201 Lab
 
 ## Prerequisites
-- Kubernetes cluster from Karbon1.0.3
--- Metallb configured
+- Kubernetes cluster from Karbon1.0.3  
+Metallb configured
 
-- Calm2.9
--- Project(default) and Provider(Karbon) configured
+- Calm2.9  
+Project(default) and Provider(Karbon) configured  
 
-- Workspace VM
--- kubectl
--- kubeconfig
--- watch
--- git
--- sshkey file
+- Workspace VM  
+kubectl  
+kubeconfig  
+watch  
+git  
+sshkey file  
 
-- Variables
--- YOURNAME: Your Unique Name without spaces (ex: shuchida)
+- Variables  
+YOURNAME: Your Unique Name without spaces (ex: shuchida)
 
 ## 0.[WSVM] Create namespace
 ```shell
