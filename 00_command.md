@@ -1,4 +1,4 @@
-# SE Team training Calm 201 Lab
+# SE Team training Calm/Karbon 201 Lab
 
 ## Prerequisites
 - Kubernetes cluster from Karbon1.0.3  
@@ -16,6 +16,14 @@ sshkey file
 
 - Variables  
 YOURNAME: Your Unique Name without spaces (ex: shuchida)
+
+- Instruction
+[WSVM]: Operate from your workspace VM
+[CALM]: Operate from Calm GUI
+[Browser]: Operate from your local browser
+[DevWSVM]: Operate from the Developer's workspace VM created from cicd-base.json blueprint
+[Jenkins]: Operate from your Jenkins instance created from cicd-base.json blueprint
+
 
 ## 1.[WSVM] Create namespace
 ```shell
