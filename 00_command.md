@@ -21,16 +21,15 @@ YOURNAME: Your Unique Name without spaces (ex: shuchida)
 [WSVM]: Operate from your workspace VM
 [CALM]: Operate from Calm GUI
 [Browser]: Operate from your local browser
-[DevWSVM]: Operate from the Developer's workspace VM created from cicd-base.json blueprint
-[Jenkins]: Operate from your Jenkins instance created from cicd-base.json blueprint
-
+[DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint
+[Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint
 
 ## 1.[WSVM] Create namespace
 ```shell
 kubectl create ns [YOURNAME]
 ```
 
-## 2.[CALM] Login to Calm and upload "cicd-mongo.json" blueprint
+## 2.[CALM] Login to Calm and upload "01_cicd-mongo.json" blueprint
 ```shell
 Blueprint Name: [YOURNAME]-cicd-mongo
 Project: default
@@ -50,14 +49,14 @@ Push Create button
 kubectl get deploy,po,svc -n [YOURNAME]
 ```
 
-## 5.[CALM] Upload "cicd-app.json" blueprint
+## 5.[CALM] Upload "02_cicd-app.json" blueprint
 ```shell
 Blueprint Name: [YOURNAME]-cicd-app
 Project: default
 Password: nutanix/4u
 ```
 
-## 6.[CALM] Upload "cicd-base.json" blueprint
+## 6.[CALM] Upload "03_cicd-base.json" blueprint
 ```shell
 Blueprint Name: [YOURNAME]-cicd-base
 Project: default
@@ -126,8 +125,8 @@ ssh -i calmkey nutanix@IP
 
 ## 13.[WSVM] Create services for nginx and nodejs
 ```shell
-kubectl apply -f nginx-calm-lb-service.yaml -n [YOURNAME]
-kubectl apply -f nodejs-calm-lb-service.yaml -n [YOURNAME]
+kubectl apply -f 04_nginx-calm-lb-service.yaml -n [YOURNAME]
+kubectl apply -f 05_nodejs-calm-lb-service.yaml -n [YOURNAME]
 kubectl get services -n [YOURNAME]
 kubectl get services nodejs-calm-lb-service -n shuchida -o jsonpath='{.status.loadBalancer.ingress[0].ip}' --> memo the ip address as NODEJS address
 kubectl get services nginx-calm-lb-service -n shuchida -o jsonpath='{.status.loadBalancer.ingress[0].ip}' --> memo the ip address as NGINX address
