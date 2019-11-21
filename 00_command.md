@@ -128,16 +128,18 @@ ssh -i calmkey nutanix@IP
 kubectl apply -f 04_nginx-calm-lb-service.yaml -n [YOURNAME]
 kubectl apply -f 05_nodejs-calm-lb-service.yaml -n [YOURNAME]
 kubectl get services -n [YOURNAME]
-kubectl get services nodejs-calm-lb-service -n shuchida -o jsonpath='{.status.loadBalancer.ingress[0].ip}' --> memo the ip address as NODEJS address
-kubectl get services nginx-calm-lb-service -n shuchida -o jsonpath='{.status.loadBalancer.ingress[0].ip}' --> memo the ip address as NGINX address
+kubectl get services nodejs-calm-lb-service -n shuchida -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+--> memo the ip address as NODEJS address
+kubectl get services nginx-calm-lb-service -n shuchida -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+--> memo the ip address as NGINX address
 ```
 
 ## 14.[CALM] Modify [YOURNAME]-cicd-app blueprint
 ```shell
 Open [YOURNAME]-cicd-app blueprint --> Application Profile: Default --> Variables
-mgmtvm_address: "Developer Workstation IP Address" shown at #10
+mgmtvm_address: "Developer Workstation IP Address" shown at #8
 pc_instance_ip: Prism Central IP Address
-nodejs_ip: ip address of NODEJS address taken at #11
+nodejs_ip: ip address of NODEJS address taken at #13
 yourname: [YOURNAME]
 Push Save Button
 ```
