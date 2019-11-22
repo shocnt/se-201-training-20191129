@@ -65,7 +65,8 @@ Note: You can ignore the 3 Warnings.
 ## 1-4.[WSVM] Check mongodb deployment, pod and service are created
 ```shell
 kubectl get deploy,po,svc -n [YOURNAME]
-
+```
+```shell
 The output should be something like this.
 
 $ kubectl get deploy,po,svc -n shuchida
@@ -79,38 +80,58 @@ NAME                              TYPE           CLUSTER-IP       EXTERNAL-IP   
 service/mongodb-calm-lb-service   ClusterIP      172.19.163.5     <none>          27017/TCP        9d
 ```
 
-## 5.[CALM] Upload "02_cicd-app.json" blueprint
+## 2.Create CICD toolkit from Calm
+![CICD](./images/CICD.png)
+
+### 2-1.[CALM] Upload "02_cicd-app.json" blueprint
 ```shell
 Blueprint Name: [YOURNAME]-cicd-app
 Project: default
 Password: nutanix/4u
 ```
 
-## 6.[CALM] Upload "03_cicd-base.json" blueprint
+![AppUpload](./images/AppUpload.png)
+
+## 2-2.[CALM] Upload "03_cicd-base.json" blueprint
 ```shell
 Blueprint Name: [YOURNAME]-cicd-base
 Project: default
 Password: nutanix/4u
 
-Services --> Developer Workstation --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Services --> Jenkins Slave --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Services --> Jenkins Master --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Services --> Docker Registry --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Services --> Artifactory --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Services --> Gitolite --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
+Services:
+Developer Workstation --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
+Jenkins Slave --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
+Jenkins Master --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
+Docker Registry --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
+Artifactory --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
+Gitolite --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
 ```
 
-## 7.[CALM] Launch cicd-base application
+![BaseUpload](./images/BaseUpload.png)
+![BaseServices](./images/BaseServices.png)
+
+## 2-3.[CALM] Launch cicd-base application
 ```shell
 Push Launch Button
 Name of the Application: [YOURNAME]-cicd-base
-Blueprint Name: [YOURNAME]-cicd-app
-Karbon Cluster Name: XXXXXX
-Prism Central IP Address: Your PC address
-yourname: [YOURNAME]
-Push Create Button
+
+Profile configuration:
+- Blueprint Name: [YOURNAME]-cicd-app
+- Karbon Cluster Name: XXXXXX
+- Prism Central IP Address: Your PC address
+- yourname: [YOURNAME]
+
+Credentials:
+- Prism Central User --> Fill out your Prism Central admin user password
 ```
-takes 20-30mins to boot up
+
+![BaseLaunch](./images/BaseLaunch.png)
+![BaseProfile](./images/BaseProfile.png)
+![BaseCredentials](./images/BaseCredentials.png)
+
+```
+Note: 20-30mins to boot up
+```
 
 ## 8.[CALM] Check CICD environment
 ```shell
