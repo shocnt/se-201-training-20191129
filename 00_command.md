@@ -1,4 +1,10 @@
 # SE Team training Calm/Karbon 201 Lab
+## Objectives
+- Create CI/CD environment(SCM, Container registry, Artifact repository, pipeline management) using Nutanix Calm  
+- Deploy containerized application on k8s(Karbon) cluster from Nutanix Calm  
+- Create Blue-Green deployment using Nutanix Calm  
+
+![Architecture Diagram](./images/CICDEnvironment.png)
 
 ## Prerequisites
 - Kubernetes cluster from Karbon1.0.3  
