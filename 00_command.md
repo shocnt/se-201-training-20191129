@@ -11,9 +11,8 @@
 Metallb configured
 
 - Calm2.9  
-Project(default) and Provider(Karbon) configured  
 
-- Workspace VM  
+- Workspace VM(Assigned from trainer, your laptop can also be used if it has the tools below.)  
 kubectl  
 kubeconfig  
 watch  
@@ -24,35 +23,60 @@ sshkey file
 YOURNAME: Your Unique Name without spaces (ex: shuchida)
 
 - Instruction  
-[WSVM]: Operate from your workspace VM  
+[WSVM]: Operate from your Workspace VM  
 [CALM]: Operate from Calm GUI  
 [Browser]: Operate from your local browser  
 [DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint  
 [Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint  
 
-## 1.[WSVM] Create namespace
+## 1.Create MongoDB Pod from Calm
+![Mongo](./images/Mongo.png)
+
+## 1-1.[WSVM] Create namespace
 ```shell
 kubectl create ns [YOURNAME]
+kubectl get ns
+watch kubectl get deploy,po,svc -n [YOURNAME] 
 ```
 
-## 2.[CALM] Login to Calm and upload "01_cicd-mongo.json" blueprint
+## 1-2.[CALM] Login to Calm and upload "01_cicd-mongo.json" blueprint
 ```shell
 Blueprint Name: [YOURNAME]-cicd-mongo
 Project: default
 Password: nutanix/4u
 ```
+![MongoUpload](./images/MongoUpload.png)
 
-## 3.[CALM] Launch mongodb
+## 1-3.[CALM] Launch mongodb
 ```shell
 Push Launch button
 Name of the Application: [YOURNAME]-cicd-mongo
 yourname: [YOURNAME]
 Push Create button
 ```
+![MongoLaunch](./images/MongoLaunch.png)
 
-## 4.[WSVM] Check mongodb deployment, pod and service are created
+```shell
+Note: You can ignore the 3 Warnings.
+```
+
+![MongoWarnings](./images/MongoWarnings.png)
+
+## 1-4.[WSVM] Check mongodb deployment, pod and service are created
 ```shell
 kubectl get deploy,po,svc -n [YOURNAME]
+
+The output should be something like this.
+
+$ kubectl get deploy,po,svc -n shuchida
+NAME                                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.extensions/k8s-mongodb-deployment    1/1     1            1           9d
+
+NAME                                           READY   STATUS    RESTARTS   AGE
+pod/k8s-mongodb-deployment-7b4df64bb7-n9wp7    1/1     Running   0          9d
+
+NAME                              TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)          AGE
+service/mongodb-calm-lb-service   ClusterIP      172.19.163.5     <none>          27017/TCP        9d
 ```
 
 ## 5.[CALM] Upload "02_cicd-app.json" blueprint
