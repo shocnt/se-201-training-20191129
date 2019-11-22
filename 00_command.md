@@ -17,12 +17,12 @@ sshkey file
 - Variables  
 YOURNAME: Your Unique Name without spaces (ex: shuchida)
 
-- Instruction
-[WSVM]: Operate from your workspace VM
-[CALM]: Operate from Calm GUI
-[Browser]: Operate from your local browser
-[DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint
-[Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint
+- Instruction  
+[WSVM]: Operate from your workspace VM  
+[CALM]: Operate from Calm GUI  
+[Browser]: Operate from your local browser  
+[DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint  
+[Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint  
 
 ## 1.[WSVM] Create namespace
 ```shell
