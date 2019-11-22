@@ -146,17 +146,28 @@ Artifactory Details: memo the output
 Developer Workstation Details: memo the output
 ```
 
+![BaseConnection](./images/BaseConnection.png)
+![BaseJenkins](./images/BaseJenkins.png)
+![BaseDocker](./images/BaseDocker.png)
+![BaseArtifactory](./images/BaseArtifactory.png)
+![BaseDeveloperWS](./images/BaseDeveloperWS.png)
+
 ### 2-5.[Browser] Access Jenkins
 ```shell
 Access to Jenkins Master URL as indicated at "Jenkins Master URL"
 Username: admin
 Password: Shown at "Initial Authorization Password"
 ```
+
+![BaseJenkinsUI](./images/BaseJenkinsUI.png)
+
 ```shell
 You see 2 pipelines, one is devops, the other is devops_deploy
 devops: main pipeline to build container images, unit/integration test, call devops_deploy pipeline to deploy and cleanup
 devops_deploy: call calm plugin to deploy the container images using [YOURNAME]-cicd-app blueprint
 ```
+
+![BaseJenkinsUI2](./images/BaseJenkinsUI2.png)
 
 ### 2-6.[Browser] Access Docker Registry
 ```shell
@@ -165,6 +176,8 @@ Username: nutanix
 Password: nutanix/4u
 ```
 
+![BaseDockerUI](./images/BaseDockerUI.png)
+
 ### 2-7.[Browser] Access Artifactory
 ```shell
 Access to Artifactory URL as indicated at "Artifactory URL"
@@ -172,10 +185,46 @@ Username: admin
 Password: password
 ```
 
+![BaseArtifactoryUI](./images/BaseDockerUI.png)
+![BaseArtifactoryUI2](./images/BaseDockerUI2.png)
+
 ### 2-8.[DevWSVM] Access Developer Workstation
 ```shell
 Access to developer workstation, ssh to "Developer Workstaion IP Address" using ssh key
 ssh -i calmkey nutanix@"Developer Workstation IP Address"
+```
+```shell
+Initial application code has been placed on this workstation.
+Move to devops directory and look around 
+
+cd ~/devops
+git status
+git remote -v
+
+The output should be something like this.
+[nutanix@dev-workstation-2193 devops]$ git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	Jenkinsfile
+#	Makefile
+#	app/
+#	db/
+#	docker-ansible/
+#	docker/
+#	target/
+#	web/
+nothing added to commit but untracked files present (use "git add" to track)
+[nutanix@dev-workstation-2193 devops]$ 
+[nutanix@dev-workstation-2193 devops]$ 
+[nutanix@dev-workstation-2193 devops]$ git remote -v
+origin	git@git-server-2598.apjsme.local:devops.git (fetch)
+origin	git@git-server-2598.apjsme.local:devops.git (push)
+[nutanix@dev-workstation-2193 devops]$ 
 ```
 
 ## 3.Application deployment
