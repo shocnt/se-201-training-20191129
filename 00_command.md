@@ -190,7 +190,7 @@ endpoints/nodejs-calm-lb-service    172.20.1.13:3000                59m
 
 ## 18.[Browser] Access the application from browser
 ```shell
-Access the NGINX ip address from web browser.
+Access the NGINX ip address from web browser fetched at #13
 Push Search button to display the rank.
 ```
 
