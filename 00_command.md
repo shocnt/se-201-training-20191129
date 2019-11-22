@@ -185,8 +185,8 @@ Username: admin
 Password: password
 ```
 
-![BaseArtifactoryUI](./images/BaseDockerUI.png)
-![BaseArtifactoryUI2](./images/BaseDockerUI2.png)
+![BaseArtifactoryUI](./images/BaseArtifactoryUI.png)
+![BaseArtifactoryUI2](./images/BaseArtifactoryUI2.png)
 
 ### 2-8.[DevWSVM] Access Developer Workstation
 ```shell
