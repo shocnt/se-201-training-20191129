@@ -44,8 +44,14 @@ watch kubectl get deploy,po,svc -n [YOURNAME]
 Blueprint Name: [YOURNAME]-cicd-mongo
 Project: default
 Password: nutanix/4u
+
+Pod --> MongoDBPod --> Deployment
+Account: japanse-k8s
+
+Push Save button
 ```
 ![MongoUpload](./images/MongoUpload.png)
+![Mongok8s](./images/Mongok8s.png)
 
 ## 1-3.[CALM] Launch mongodb
 ```shell
@@ -121,7 +127,7 @@ Name of the Application: [YOURNAME]-cicd-base
 
 Profile configuration:
 - Blueprint Name: [YOURNAME]-cicd-app
-- Karbon Cluster Name: XXXXXX
+- Karbon Cluster Name: japanse-k8s
 - Prism Central IP Address: Your PC address
 - yourname: [YOURNAME]
 
@@ -246,19 +252,33 @@ kubectl get services nginx-calm-lb-service -n [YOURNAME] -o jsonpath='{.status.l
 ```shell
 Open [YOURNAME]-cicd-app blueprint
 
+Pod --> NginxPod --> Deployment
+Account: japanse-k8s
+Pod --> NodeJSPod --> Deployment
+Account: japanse-k8s
+```
+
+![AppNginxk8s](./images/AppNginxk8s.png)
+![AppNodejsk8s](./images/AppNodejsk8s.png)
+
+```
 Application Profile: Default --> Variables:
 mgmtvm_address: "Developer Workstation IP Address" fetched at 2-4
 pc_instance_ip: Prism Central IP Address
-nodejs_ip: ip address of NODEJS address fetched at 3-1
+karbon_cluster_name: japanse-k8s
+nodejs_ip: IP address of NODEJS address fetched at 3-1
 yourname: [YOURNAME]
+```
 
+![AppVariables](./images/AppVariables.png)
+
+```
 Credentials:
 Prism Central User --> Fill out your Prism Central admin user password
 
 Push Save button
 ```
 
-![AppVariables](./images/AppVariables.png)
 ![AppCredentials](./images/AppCredentials.png)
 
 ```shell
@@ -516,7 +536,7 @@ endpoints/nodejs-calm-lb-service    172.20.1.46:3000                9d
 
 ## 3-11.[Browser] Access the application from browser
 ```shell
-Access the NGINX ip address from web browser, the server info pane changed the color to purple
+Access the NGINX ip address from web browser fetched at 3-1, the color of server info pane changed to purple.
 Push Search button to display the rank.
 ```
 
