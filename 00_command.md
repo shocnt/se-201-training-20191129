@@ -44,13 +44,15 @@ watch kubectl get deploy,po,svc -n [YOURNAME]
 Blueprint Name: [YOURNAME]-cicd-mongo
 Project: default
 Password: nutanix/4u
+```
+![MongoUpload](./images/MongoUpload.png)
 
+```
 Pod --> MongoDBPod --> Deployment
 Account: japanse-k8s
 
 Push Save button
 ```
-![MongoUpload](./images/MongoUpload.png)
 ![Mongok8s](./images/Mongok8s.png)
 
 ## 1-3.[CALM] Launch mongodb
