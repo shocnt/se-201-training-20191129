@@ -111,12 +111,12 @@ Project: default
 Password: nutanix/4u
 
 Services:
-Developer Workstation --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Jenkins Slave --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Jenkins Master --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Docker Registry --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Artifactory --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
-Gitolite --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select XXXXX
+Developer Workstation --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
+Jenkins Slave --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-NetworkXX
+Jenkins Master --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
+Docker Registry --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
+Artifactory --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
+Gitolite --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 ```
 
 ![BaseUpload](./images/BaseUpload.png)
