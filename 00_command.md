@@ -12,7 +12,7 @@ Metallb configured
 
 - Calm2.9  
 
-- Workspace VM(Assigned from trainer, your laptop can also be used if it has the tools below.)  
+- kubectl VM(Assigned from trainer, your laptop can also be used if it has the tools below.)  
 kubectl  
 kubeconfig  
 watch  
@@ -23,7 +23,7 @@ sshkey file(calmkey)
 YOURNAME: Your Unique Name without spaces (ex: shuchida)
 
 - Instruction  
-[WSVM]: Operate from your Workspace VM  
+[KubeVM]: Operate from your kubectl VM  
 [CALM]: Operate from Calm GUI  
 [Browser]: Operate from your local browser  
 [DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint  
@@ -32,7 +32,7 @@ YOURNAME: Your Unique Name without spaces (ex: shuchida)
 ## 1.Create MongoDB Pod from Calm
 ![Mongo](./images/Mongo.png)
 
-## 1-1.[WSVM] Create namespace
+## 1-1.[KubeVM] Create namespace
 ```shell
 kubectl create ns [YOURNAME]
 kubectl get ns
@@ -70,7 +70,7 @@ Note: You can ignore the 3 Warnings.
 
 ![MongoWarnings](./images/MongoWarnings.png)
 
-## 1-4.[WSVM] Check mongodb deployment, pod and service are created
+## 1-4.[KubeVM] Check mongodb deployment, pod and service are created
 ```shell
 kubectl get deploy,po,svc -n [YOURNAME]
 ```
@@ -239,7 +239,7 @@ origin	git@git-server-2598.apjsme.local:devops.git (push)
 ## 3.Application deployment
 ![App](./images/App.png)
 
-### 3-1.[WSVM] Create services for nginx and nodejs pods
+### 3-1.[KubeVM] Create services for nginx and nodejs pods
 ```shell
 kubectl apply -f 04_nginx-calm-lb-service.yaml -n [YOURNAME]
 kubectl apply -f 05_nodejs-calm-lb-service.yaml -n [YOURNAME]
@@ -385,7 +385,7 @@ Click devops_deploy pipeline, you should see deployment task is completed.
 
 ![AppPipeline2](./images/AppPipeline2.png)
 
-## 3-5.[WSVM] Check kubernetes cluster
+## 3-5.[KubeVM] Check kubernetes cluster
 ```shell
 kubectl get deploy,po,svc,ep -n [YOURNAME]
 
@@ -501,7 +501,7 @@ Click devops_deploy pipeline, you should see deployment task is completed.
 
 ![AppPipeline4](./images/AppPipeline4.png)
 
-## 3-10.[WSVM] Check kubernetes cluster
+## 3-10.[KubeVM] Check kubernetes cluster
 ```shell
 kubectl get deploy,po,svc,ep -n [YOURNAME]
 
