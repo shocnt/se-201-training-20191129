@@ -2,9 +2,9 @@
 This part is Calm201/Karbon201 hands-on in APJ Calm &amp; Karbon 201 training
 
 ## How to use
-### Log-on workspace VM 
+### Log-on kubectl VM 
 ```
-Login or ssh into your workspace VM
+Login or ssh into your kubectl VM
 ```
 
 ### Clone training materials from github
