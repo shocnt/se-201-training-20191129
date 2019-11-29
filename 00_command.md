@@ -49,7 +49,7 @@ Password: nutanix/4u
 
 ```
 Pod --> MongoDBPod --> Deployment
-Account: japanse-k8s
+Account: JapanSE-K8s
 
 Push Save button
 ```
@@ -112,7 +112,7 @@ Password: nutanix/4u
 
 Services:
 Developer Workstation --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
-Jenkins Slave --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-NetworkXX
+Jenkins Slave --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 Jenkins Master --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 Docker Registry --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 Artifactory --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
@@ -129,7 +129,7 @@ Name of the Application: [YOURNAME]-cicd-base
 
 Profile configuration:
 - Blueprint Name: [YOURNAME]-cicd-app
-- Karbon Cluster Name: japanse-k8s
+- Karbon Cluster Name: JapanSE-K8s
 - Prism Central IP Address: Your PC address
 - yourname: [YOURNAME]
 
@@ -255,9 +255,9 @@ kubectl get services nginx-calm-lb-service -n [YOURNAME] -o jsonpath='{.status.l
 Open [YOURNAME]-cicd-app blueprint
 
 Pod --> NginxPod --> Deployment
-Account: japanse-k8s
+Account: JapanSE-K8s
 Pod --> NodeJSPod --> Deployment
-Account: japanse-k8s
+Account: JapanSE-K8s
 ```
 
 ![AppNginxk8s](./images/AppNginxk8s.png)
@@ -267,7 +267,7 @@ Account: japanse-k8s
 Application Profile: Default --> Variables:
 mgmtvm_address: "Developer Workstation IP Address" fetched at 2-4
 pc_instance_ip: Prism Central IP Address
-karbon_cluster_name: japanse-k8s
+karbon_cluster_name: JapanSE-K8s
 nodejs_ip: IP address of NODEJS address fetched at 3-1
 yourname: [YOURNAME]
 ```
