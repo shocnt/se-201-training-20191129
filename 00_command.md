@@ -49,7 +49,7 @@ Password: nutanix/4u
 
 ```
 Pod --> MongoDBPod --> Deployment
-Account: JapanSE-K8s
+Account: [Karbon provider name]
 
 Push Save button
 ```
@@ -255,9 +255,9 @@ kubectl get services nginx-calm-lb-service -n [YOURNAME] -o jsonpath='{.status.l
 Open [YOURNAME]-cicd-app blueprint
 
 Pod --> NginxPod --> Deployment
-Account: JapanSE-K8s
+Account: [Karbon provider name]
 Pod --> NodeJSPod --> Deployment
-Account: JapanSE-K8s
+Account: [Karbon provider name]
 ```
 
 ![AppNginxk8s](./images/AppNginxk8s.png)
