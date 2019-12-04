@@ -129,7 +129,7 @@ Name of the Application: [YOURNAME]-cicd-base
 
 Profile configuration:
 - Blueprint Name: [YOURNAME]-cicd-app
-- Karbon Cluster Name: JapanSE-K8s
+- Karbon Cluster Name: Your Karbon cluster name
 - Prism Central IP Address: Your PC address
 - yourname: [YOURNAME]
 
@@ -267,7 +267,7 @@ Account: [Karbon provider name]
 Application Profile: Default --> Variables:
 mgmtvm_address: "Developer Workstation IP Address" fetched at 2-4
 pc_instance_ip: Prism Central IP Address
-karbon_cluster_name: JapanSE-K8s
+karbon_cluster_name: Your Karbon cluster name
 nodejs_ip: IP address of NODEJS address fetched at 3-1
 yourname: [YOURNAME]
 ```
