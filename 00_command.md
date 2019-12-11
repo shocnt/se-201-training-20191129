@@ -8,7 +8,7 @@
 
 ## Prerequisites
 - Kubernetes cluster from Karbon1.0.3  
-Metallb configured
+Metallb configured following to the instruction [here](https://next.nutanix.com/architectural-best-practices-74/utilizing-metallb-to-provide-loadbalancer-services-for-nutanix-karbon-32966)
 
 - Calm2.9  
 
