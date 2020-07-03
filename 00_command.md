@@ -1,23 +1,62 @@
 # SE Team training Calm/Karbon 201 Lab
+
 ## Objectives
-- Create CI/CD environment(SCM, Container registry, Artifact repository, pipeline management) using Nutanix Calm  
-- Deploy containerized application on k8s(Karbon) cluster from Nutanix Calm  
-- Create Blue-Green deployment using Nutanix Calm  
+
+- Create CI/CD environment(SCM, Container registry, Artifact repository, pipeline management) using Nutanix Calm
+- Deploy containerized application on k8s(Karbon) cluster from Nutanix Calm
+- Create Blue-Green deployment using Nutanix Calm
 
 ![Architecture Diagram](./images/CICDEnvironment.png)
 
 ## Prerequisites
-- Kubernetes cluster from Karbon1.0.3  
-Metallb configured following to the instruction [here](https://next.nutanix.com/architectural-best-practices-74/utilizing-metallb-to-provide-loadbalancer-services-for-nutanix-karbon-32966)
 
-- Calm2.9  
+- Kubernetes cluster (v1.16.10) built by Karbon 2.0.2
+- Calm 3.0
+- Centos Image [download](http://download.nutanix.com/calm/CentOS-7-x86_64-GenericCloud-1801-01.qcow2)
 
 - kubectl VM(Assigned from trainer, your laptop can also be used if it has the tools below.)  
-kubectl  
-kubeconfig  
-watch  
-git  
-sshkey file(calmkey)  
+kubectl [install guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+kubeconfig
+watch
+git
+
+- run this script to get private/public keys used in this lab, or use yourself's
+
+```shell
+KEY_NAME=key-`date +%Y%m%d%H%M%S`
+echo 'LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBeXp3UWRWaW5O
+ZWhVMFZscEZqSjBXZktFOW9QejNpK1hyRWVrSUJDMnlEWFFpRjNvCjBPQVBKSTd2Q1NSYlhXaWV5
+U05nbEIxWTE4RXJTVXZzSmJnNlArbFZzWEFMTU11NytZZkZNSDl3dWsrZ01Mb3cKRXIwZVExMFc1
+cGtPYzhKTG8wOEt2K09Ma013UGZvSGhaQ05HQVNTRTk3R29iTTNOdkp3Z2I2ZU1WcVlJQTRDdQph
+VHpPTDBQazJSYUpMN3VESHlWTDdNbFB1YjNQazR2MjU4WXJnUVZFL0tGdjVEZHV0ZUk4cDFLZG10
+MS8xa2psCjhPYVVLQ0lVeFRnZlJyTW5aOHJsN2Qxd2FrcHJkYkREMkdCakw2WDN6YTNJTWtSb0tC
+Ry9WVGNwaTJwWm9FSVYKVjFzOEplUTY4aHQ1SFhLMkV6NzNRd3NSZGxneGFBU09UUVppUHdJREFR
+QUJBb0lCQUNEenNpOTBtbGZ4UFo5YwpBZC9wZWxnRExHL1Q0VHlMTnVwbUMwUnZzVk13OW9qRndU
+UHN3RWZMTFJLc1pHdjJ4SmdVTmxxTmo1UWI2K3JNCmRwTi9GV0s3Y0h0K2tUSHVOcUkwMDFJVHQ3
+RmRxN2w2MXNTVENVOGV6dEhBeTBrVm5iSHk1T2xMK1pzV213U0cKQm9kMytLZkN4aFJySjhYTWNL
+aytIenc3VEZQWCtjU202TDFTNnNrZWN2TCtOcEsyY2sxa3pSeHRQMFdvOXR1awpwMXNPV040cWVw
+cHJ3akZ6eTlGY0dORFhiUmM5T2N0U290T1NBMUhDTmxPN2szWjdDRFZ5b0RoRUdnMHIyYXNECjVX
+Q2pva3ZiYU11VVAzSXVpVENJS1JoRXlPY3l0VUJBOU5KT3pzQ3VzZlE5dzBOcCtwTXp6cFhKcmtr
+ZGdpNUsKVGlsVzNCRUNnWUVBNlJRYXhMeGxsN3BPdGZab0MzcG9mYmt5UnBVbjIyMWNFeEZzUTdX
+RzZHaWRTVGUyVnliVQp6RWtxVnFYVWJBbWowOVZIcnk5eHg3aU9ZYnlIYnQzdHlvckloRmtNd0w2
+a0R2Wjkza2dqM2pJMVhSbDMyVWhTCnRUQTlGY0JnQjZ2TmhacFBEMHM5TGhsR3dKUUtXeXRuZ0dp
+YnZnbkhlajFLQ3dDRWhLdVJyMlVDZ1lFQTN6aWUKK2htbDBtRGlNbmJxTTN1c0NrVEZ0MDJsNVBw
+cVpaNVNzOVJrZGpTMHJHT1VIRHBmd3RNUUJiQW5MT3oxbkpKcApyQ3lsRHFWUUpNd0hmTUZGd1hX
+V1E5U2FSM2Q0SWdkNUN2RHFybGdJUlZqSDlBOGtjNkVFODVUTGlqMWpNSSthCjZ2eGV5Y2tHMXlX
+TjRHTDAya2drRW1XN0xrN0toRjRMWDc1WGF0TUNnWUFmQzA5NWJzSjFVQnBWd0NraGhqOU8KcDVF
+YnQ1Z2tjTTkzdHJWZDIxckpyODFyU0NGZ1FFck5udDBseDFhZ3dUUHg3aEZyTXYyTHBYaEpha3Y3
+cDFHWgp6WnhoakY3WGVVenV0VVFVakRWQ3poc3ZlRW52UmVQR1FGT1NoeG9EUzQzSFFzTk8vUzE3
+NjEveUhJVzRtUEpqCk53dXZaeXdMaXdoR3FOMzlzY0JveFFLQmdHcXZDdndKS2dGa0lIZHg4Zmp0
+RUlwUDJCY0ZXMVlXZ0tkVWhiNUEKc2tyMFlhMUtZazBqY1FVU0RzUkpMbEFBYUZxT2QwYThoNTU2
+VDlWbVZlWEFFWENtbkV5SzNibHVWZElkdERJUQpkbmtneGNNdTdWR3Rzd1E0WHI5enk5dWovellF
+VEV3bWxiN20vd2Z3Z09CUEt5cnY4NTEvVlhpS1c2dnJyby94CnpxSFZBb0dCQU9KOVRwVVNXSEhI
+MXdQR0hldmFFaTRJbWNvdTZ6eUlyWUdObE81RE1MMHhVWW15ejdrWW0wbW8KVjVqcEU2MU4yNTJq
+VTBMNit1VkViUnpqaGdtZ281K2NGZEsxRHN5YlNIbFVZa3FFZHRhM3lOM25xMDNGTm9tawpwbjNr
+SUZzUmxzcUxDQm5PWU1kbHJiRy90WEM1VFh4cVV4WWF0QS9KSDBWRW1oVEYzK29LCi0tLS0tRU5E
+IFJTQSBQUklWQVRFIEtFWS0tLS0tCg==' |base64 --decode >${KEY_NAME}
+chmod 600 ${KEY_NAME}
+ssh-keygen -y -f ${KEY_NAME} > ${KEY_NAME}.pub
+```
 
 - Variables  
 YOURNAME: Your Unique Name without spaces (ex: shuchida)
@@ -29,52 +68,87 @@ YOURNAME: Your Unique Name without spaces (ex: shuchida)
 [DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint  
 [Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint  
 
-## 1.Create MongoDB Pod from Calm
-![Mongo](./images/Mongo.png)
+## 0. Prepare your kubernetes cluster
 
-## 1-1.[KubeVM] Create namespace
+- Install Metallb 0.9.3 [reference doc](https://next.nutanix.com/architectural-best-practices-74/utilizing-metallb-to-provide-loadbalancer-services-for-nutanix-karbon-32966)
+
+```shell
+# Install
+kubectl apply --validate=false -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+kubectl apply --validate=false -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+# On first install only
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+# Layer2 config prepare at least 2 available IPs
+echo 'apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 10.55.7.240-10.55.7.249' |tee metallb-config.yaml
+kubectl apply -f metallb-config.yaml
+```
+
+- Create namespace
+
 ```shell
 kubectl create ns [YOURNAME]
 kubectl get ns
-watch kubectl get deploy,po,svc -n [YOURNAME] 
+kubectl get all -n [YOURNAME]
 ```
 
+## 1. Create MongoDB Pod from Calm
+
+![Mongo](./images/Mongo.png)
+
 ## 1-2.[CALM] Login to Calm and upload "01_cicd-mongo.json" blueprint
-```shell
+
+```text
 Blueprint Name: [YOURNAME]-cicd-mongo
 Project: default
 Password: nutanix/4u
 ```
+
 ![MongoUpload](./images/MongoUpload.png)
 
-```
+```text
 Pod --> MongoDBPod --> Deployment
 Account: [Karbon provider name]
 
 Push Save button
 ```
+
 ![Mongok8s](./images/Mongok8s.png)
 
 ## 1-3.[CALM] Launch mongodb
-```shell
+
+```text
 Push Launch button
 Name of the Application: [YOURNAME]-cicd-mongo
 yourname: [YOURNAME]
 Push Create button
 ```
+
 ![MongoLaunch](./images/MongoLaunch.png)
 
-```shell
+```text
 Note: You can ignore the 3 Warnings.
 ```
 
 ![MongoWarnings](./images/MongoWarnings.png)
 
 ## 1-4.[KubeVM] Check mongodb deployment, pod and service are created
+
 ```shell
 kubectl get deploy,po,svc -n [YOURNAME]
 ```
-```shell
+
+```text
 The output should be something like this.
 
 $ kubectl get deploy,po,svc -n shuchida
@@ -89,10 +163,12 @@ service/mongodb-calm-lb-service   ClusterIP      172.19.163.5     <none>        
 ```
 
 ## 2.Create CICD toolkit from Calm
+
 ![CICD](./images/CICD.png)
 
 ### 2-1.[CALM] Upload "02_cicd-app.json" blueprint
-```shell
+
+```text
 Blueprint Name: [YOURNAME]-cicd-app
 Project: default
 Password: nutanix/4u
@@ -100,17 +176,26 @@ Password: nutanix/4u
 
 ![AppUpload](./images/AppUpload.png)
 
-```shell
+```text
 Note: Don't launch the app for now, this app is deployed by Jenkins at later step.
 ```
 
 ### 2-2.[CALM] Upload "03_cicd-base.json" blueprint
-```shell
+
+```text
 Blueprint Name: [YOURNAME]-cicd-base
 Project: default
 Password: nutanix/4u
 
 Services:
+
+Developer Workstation --> VM --> Image --> using the centos image you downloaded before
+Jenkins Slave --> VM --> Image --> using the centos image you downloaded before
+Jenkins Master --> VM --> Image --> using the centos image you downloaded before
+Docker Registry --> VM --> Image --> using the centos image you downloaded before
+Artifactory --> VM --> Image --> using the centos image you downloaded before
+Gitolite --> VM --> Image --> using the centos image you downloaded before
+
 Developer Workstation --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 Jenkins Slave --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 Jenkins Master --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
