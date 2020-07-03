@@ -116,6 +116,8 @@ Password: nutanix/4u
 
 ![MongoUpload](./images/MongoUpload.png)
 
+#### customized this blueprint
+
 ```text
 Pod --> MongoDBPod --> Deployment
 Account: [Karbon provider name]
@@ -125,7 +127,7 @@ Push Save button
 
 ![Mongok8s](./images/Mongok8s.png)
 
-## 1-3.[CALM] Launch mongodb
+#### Launch mongodb
 
 ```text
 Push Launch button
@@ -142,7 +144,7 @@ Note: You can ignore the 3 Warnings.
 
 ![MongoWarnings](./images/MongoWarnings.png)
 
-## 1-4.[KubeVM] Check mongodb deployment, pod and service are created
+#### Check mongodb deployment, pod and service are created
 
 ```shell
 kubectl get deploy,po,svc -n [YOURNAME]
