@@ -68,9 +68,9 @@ YOURNAME: Your Unique Name without spaces (ex: shuchida)
 [DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint  
 [Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint  
 
-## 0. Prepare your kubernetes cluster
+## Install Metallb
 
-- Install Metallb 0.9.3 [reference doc](https://next.nutanix.com/architectural-best-practices-74/utilizing-metallb-to-provide-loadbalancer-services-for-nutanix-karbon-32966)
+Install Metallb 0.9.3 [reference doc](https://next.nutanix.com/architectural-best-practices-74/utilizing-metallb-to-provide-loadbalancer-services-for-nutanix-karbon-32966)
 
 ```shell
 # Install
@@ -94,7 +94,7 @@ data:
 kubectl apply -f metallb-config.yaml
 ```
 
-- Create namespace
+## Create namespace for this lab
 
 ```shell
 kubectl create ns [YOURNAME]
@@ -102,11 +102,11 @@ kubectl get ns
 kubectl get all -n [YOURNAME]
 ```
 
-## 1. Create MongoDB Pod from Calm
+## Create MongoDB Pod from Calm
 
 ![Mongo](./images/Mongo.png)
 
-## 1-2.[CALM] Login to Calm and upload "01_cicd-mongo.json" blueprint
+#### Login to Calm and upload "01_cicd-mongo.json" blueprint
 
 ```text
 Blueprint Name: [YOURNAME]-cicd-mongo
