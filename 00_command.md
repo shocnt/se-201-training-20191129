@@ -12,6 +12,7 @@
 
 - Kubernetes cluster (v1.16.10) built by Karbon 2.0.2
 - Calm 3.0
+  - add kubernetes provider to project
 - Centos Image [download](http://download.nutanix.com/calm/CentOS-7-x86_64-GenericCloud-1801-01.qcow2)
 
 - kubectl VM(Assigned from trainer, your laptop can also be used if it has the tools below.)  
@@ -61,12 +62,12 @@ ssh-keygen -y -f ${KEY_NAME} > ${KEY_NAME}.pub
 - Variables  
 YOURNAME: Your Unique Name without spaces (ex: shuchida)
 
-- Instruction  
+<!-- - Instruction  
 [KubeVM]: Operate from your kubectl VM  
 [CALM]: Operate from Calm GUI  
 [Browser]: Operate from your local browser  
 [DevWSVM]: Operate from the Developer's workspace VM created from 03_cicd-base.json blueprint  
-[Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint  
+[Jenkins]: Operate from your Jenkins instance created from 03_cicd-base.json blueprint   -->
 
 ## Install Metallb
 
@@ -79,7 +80,9 @@ kubectl apply --validate=false -f https://raw.githubusercontent.com/metallb/meta
 # On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 # Layer2 config prepare at least 2 available IPs
-echo 'apiVersion: v1
+availip_begin="10.55.7.240"
+availip_end="10.55.7.249"
+echo "apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: metallb-system
@@ -90,7 +93,7 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 10.55.7.240-10.55.7.249' |tee metallb-config.yaml
+      - ${availip_begin}-${availip_end}" |tee metallb-config.yaml
 kubectl apply -f metallb-config.yaml
 ```
 
@@ -102,7 +105,7 @@ kubectl get ns
 kubectl get all -n [YOURNAME]
 ```
 
-## Create MongoDB Pod from Calm
+## Create MongoDB Pod
 
 ![Mongo](./images/Mongo.png)
 
@@ -164,25 +167,12 @@ NAME                              TYPE           CLUSTER-IP       EXTERNAL-IP   
 service/mongodb-calm-lb-service   ClusterIP      172.19.163.5     <none>          27017/TCP        9d
 ```
 
-## 2.Create CICD toolkit from Calm
+## Create CICD environment
 
 ![CICD](./images/CICD.png)
 
-### 2-1.[CALM] Upload "02_cicd-app.json" blueprint
 
-```text
-Blueprint Name: [YOURNAME]-cicd-app
-Project: default
-Password: nutanix/4u
-```
-
-![AppUpload](./images/AppUpload.png)
-
-```text
-Note: Don't launch the app for now, this app is deployed by Jenkins at later step.
-```
-
-### 2-2.[CALM] Upload "03_cicd-base.json" blueprint
+#### 2-2.[CALM] Upload "03_cicd-base.json" blueprint
 
 ```text
 Blueprint Name: [YOURNAME]-cicd-base
@@ -323,21 +313,36 @@ origin	git@git-server-2598.apjsme.local:devops.git (push)
 [nutanix@dev-workstation-2193 devops]$ 
 ```
 
-## 3.Application deployment
+## Application deployment
+
 ![App](./images/App.png)
 
-### 3-1.[KubeVM] Create services for nginx and nodejs pods
+### Create services for nginx and nodejs pods
+
 ```shell
 kubectl apply -f 04_nginx-calm-lb-service.yaml -n [YOURNAME]
 kubectl apply -f 05_nodejs-calm-lb-service.yaml -n [YOURNAME]
 kubectl get services -n [YOURNAME]
+
 kubectl get services nodejs-calm-lb-service -n [YOURNAME] -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 --> memo the ip address as "NODEJS IP address"
+
 kubectl get services nginx-calm-lb-service -n [YOURNAME] -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 --> memo the ip address as "NGINX IP address"
 ```
 
-## 3-2.[CALM] Modify [YOURNAME]-cicd-app blueprint
+#### Upload "02_cicd-app.json" blueprint
+
+```text
+Blueprint Name: 02_cicd-app
+Project: default
+Password: nutanix/4u
+```
+
+![AppUpload](./images/AppUpload.png)
+
+#### Modify 02_cicd-app blueprint
+
 ```shell
 Open [YOURNAME]-cicd-app blueprint
 
