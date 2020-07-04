@@ -191,7 +191,7 @@ Password: nutanix/4u
 
 Services:
 
-(Option, you could choose image you have download in Prerequisites chapter before)
+(Option, you could choose image you have download in Chapter Prerequisites)
 Developer Workstation --> VM --> DISKS (1) --> Image --> Select image you created
 Jenkins Slave --> VM --> DISKS (1) --> Image --> Select image you created
 Jenkins Master --> VM --> DISKS (1) --> Image --> Select image you created
@@ -206,10 +206,20 @@ Jenkins Master --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon
 Docker Registry --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 Artifactory --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
 Gitolite --> VM --> NETWORK ADAPTERS (NICS) (1) --> NIC1 --> Select Karbon-Network
+
+Credentials:
+
+- Prism Central User --> Fill out your Prism Central admin user password
+- Docker Registry Credential --> password --> nutanix/4u
+- Jenkins Key --> using private key in Chapter Prerequisites
+- Nutanix (Default) --> using private key in Chapter Prerequisites
+
+If you use private key yourself, remeber to update public_key in Application Profile Default
 ```
 
 ![BaseUpload](./images/BaseUpload.png)
 ![BaseServices](./images/BaseServices.png)
+![BaseCredentials](./images/BaseCredentials2.png)
 
 ### 2-3.[CALM] Launch cicd-base application
 
@@ -222,13 +232,10 @@ Profile configuration:
 - Karbon Cluster Name: Your Karbon cluster name
 - Prism Central IP Address: Your PC address
 - yourname: [YOURNAME]
-
-Credentials:
-- Prism Central User --> Fill out your Prism Central admin user password
 ```
 
 ![BaseProfile](./images/BaseProfile.png)
-![BaseCredentials](./images/BaseCredentials.png)
+
 
 ```text
 Note: 20-30mins to boot up
@@ -360,10 +367,15 @@ Pod --> NginxPod --> Deployment
 Account: [Karbon provider name]
 Pod --> NodeJSPod --> Deployment
 Account: [Karbon provider name]
+
+Credentials
+- Nutanix (Default) - using same private key (got from Chapter Prerequisites or yourself)
+- Prism Central User --> Fill out your Prism Central admin user password
 ```
 
 ![AppNginxk8s](./images/AppNginxk8s.png)
 ![AppNodejsk8s](./images/AppNodejsk8s.png)
+![AppCredentials](./images/AppCredentials.png)
 
 ```text
 Application Profile: Default --> Variables:
@@ -372,18 +384,12 @@ pc_instance_ip: Prism Central IP Address
 karbon_cluster_name: Your Karbon cluster name
 nodejs_ip: IP address of NODEJS address fetched at 3-1
 yourname: [YOURNAME]
+
+Push Save button
+
 ```
 
 ![AppVariables](./images/AppVariables.png)
-
-```text
-Credentials:
-Prism Central User --> Fill out your Prism Central admin user password
-
-Push Save button
-```
-
-![AppCredentials](./images/AppCredentials.png)
 
 ```shell
 Note: You can ignore the 15 Warnings.
