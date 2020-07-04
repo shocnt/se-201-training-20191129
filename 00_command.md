@@ -10,7 +10,7 @@
 
 ## Prerequisites
 
-- Kubernetes cluster (v1.16.10) built by Karbon 2.0.2
+- Kubernetes cluster (v1.16.10) built by Karbon 2.1.0
   - Install Metallb 0.9.3 [reference doc](https://next.nutanix.com/architectural-best-practices-74/utilizing-metallb-to-provide-loadbalancer-services-for-nutanix-karbon-32966) & [offical doc](https://metallb.universe.tf/installation/#installation-by-manifest)
 
 ```shell
